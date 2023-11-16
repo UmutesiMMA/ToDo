@@ -1,14 +1,11 @@
 import { useState } from "react";
 import Activity from "./Activity";
 export default function ActivityList() {
-  const initalInputState={job:''}
-  const [task, setTask] = useState(initalInputState);
+  const [task, setTask] = useState("");
   const [List, setList] = useState([]);
-  //Good
   function handleChange(event) {
-    setTask(prevState=>({
-      [prevState.job]:event.target.value}));
-    console.log(task)
+    setTask(event.target.value);
+    console.log(task);
   }
 
   function handleDelete(index) {
@@ -19,26 +16,27 @@ export default function ActivityList() {
   function addToDo(event) {
     event.preventDefault();
     setList((prevState) => [...prevState, task]);
-    setTask(initalInputState)
+    setTask("");
   }
 
   const listItems = List.map((item, index) => {
-    if (item !== "") {
-    return (
-      <li key={index}>
-        <Activity detail={item} index={index} handleDelete={handleDelete} />
-      </li>
-    );}
+    if (/\w/.test(item)) {
+      return (
+        <li key={index}>
+          <Activity detail={item} index={index} handleDelete={handleDelete} />
+        </li>
+      );
+    }
   });
   return (
     <>
       <form onSubmit={addToDo} className="flex  justify-center mt-32 mb-20">
-        <div className="border p-4 rounded-full flex justify-between w-full">
+        <div className="border p-4 rounded-full flex justify-between w-full focus-within:border-[#658354]">
           <input
             type="text"
             placeholder="Add a task"
             name="job"
-            value={task.job}
+            value={task}
             onChange={handleChange}
             className="w-full border-transparent outline-none"
           />
