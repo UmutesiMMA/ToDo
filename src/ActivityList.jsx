@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Activity from "./Activity";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 export default function ActivityList() {
   const [task, setTask] = useState("");
   const [List, setList] = useState([]);
@@ -41,7 +43,7 @@ export default function ActivityList() {
             className="w-full border-transparent outline-none"
           />
           <button type="submit" className="border-l px-4">
-            +
+            <FontAwesomeIcon icon={faPlusCircle} className="text-green-800"/>
           </button>
         </div>
       </form>

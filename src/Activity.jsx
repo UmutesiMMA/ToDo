@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 export default function Activity({ detail, index, handleDelete }) {
   return (
     <div className="flex gap-4 border border-red-100 rounded-3xl p-4 text-2xl font-serif relative bg-[#75975e] bg-opacity-54">
@@ -5,9 +7,11 @@ export default function Activity({ detail, index, handleDelete }) {
         <input type="radio" name="" id="done" className="w-4" />
         <label htmlFor="done">{detail}</label>
       </div>
-      <button className="absolute right-6" onClick={()=>handleDelete(index)}>
-        drt
-      </button>
+      <FontAwesomeIcon
+        icon={faTrash}
+        className="p-2 absolute right-6 text-green-50"
+        onClick={() => handleDelete(index)}
+      />
     </div>
   );
 }
